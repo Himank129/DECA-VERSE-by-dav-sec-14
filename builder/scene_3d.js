@@ -48,25 +48,25 @@ module.exports = `
         <!-- In-VR Floating Quick Menu (for Quest 3S Controllers) -->
         <a-entity id="vr-floating-menu" position="-0.75 1.35 -0.6" rotation="0 40 0">
           <a-plane width="0.7" height="0.8" color="#091220" opacity="0.94" material="shader: flat;">
-            <a-text value="CPR-VR MENU" align="center" color="#00f0ff" position="0 0.32 0.01" width="1.6" font="roboto"></a-text>
+            <a-text value="CPR-VR MENU" align="center" color="#00f0ff" position="0 0.32 0.01" width="1.3" font="roboto"></a-text>
 
             <a-plane class="clickable vr-btn" id="vr-btn-learning" position="0 0.2 0.02" width="0.6" height="0.075" color="#0077ff">
-              <a-text value="LEARNING MODE" align="center" color="#ffffff" position="0 0 0.01" width="1.4"></a-text>
+              <a-text value="LEARNING MODE" align="center" color="#ffffff" position="0 0 0.01" width="1.15"></a-text>
             </a-plane>
             <a-plane class="clickable vr-btn" id="vr-btn-practice" position="0 0.1 0.02" width="0.6" height="0.075" color="#162a4b">
-              <a-text value="FREE PRACTICE" align="center" color="#ffffff" position="0 0 0.01" width="1.4"></a-text>
+              <a-text value="FREE PRACTICE" align="center" color="#ffffff" position="0 0 0.01" width="1.15"></a-text>
             </a-plane>
             <a-plane class="clickable vr-btn" id="vr-btn-emergency" position="0 0.0 0.02" width="0.6" height="0.075" color="#162a4b">
-              <a-text value="EMERGENCY SIM" align="center" color="#ffffff" position="0 0 0.01" width="1.4"></a-text>
+              <a-text value="EMERGENCY SIM" align="center" color="#ffffff" position="0 0 0.01" width="1.15"></a-text>
             </a-plane>
             <a-plane class="clickable vr-btn" id="vr-btn-exam" position="0 -0.1 0.02" width="0.6" height="0.075" color="#162a4b">
-              <a-text value="EXAMINATION" align="center" color="#ffffff" position="0 0 0.01" width="1.4"></a-text>
+              <a-text value="EXAMINATION" align="center" color="#ffffff" position="0 0 0.01" width="1.15"></a-text>
             </a-plane>
             <a-plane class="clickable vr-btn" id="vr-btn-metro" position="0 -0.2 0.02" width="0.6" height="0.075" color="#00ff88">
-              <a-text value="METRONOME: ON" id="vr-metro-text" align="center" color="#040810" position="0 0 0.01" width="1.4"></a-text>
+              <a-text value="METRONOME: ON" id="vr-metro-text" align="center" color="#040810" position="0 0 0.01" width="1.15"></a-text>
             </a-plane>
             <a-plane class="clickable vr-btn" id="vr-btn-reset" position="0 -0.3 0.02" width="0.6" height="0.065" color="#ff3366">
-              <a-text value="RESET SCENARIO" align="center" color="#ffffff" position="0 0 0.01" width="1.3"></a-text>
+              <a-text value="RESET SCENARIO" align="center" color="#ffffff" position="0 0 0.01" width="1.15"></a-text>
             </a-plane>
           </a-plane>
         </a-entity>
@@ -394,13 +394,14 @@ module.exports = `
 
         <!-- 3D Floating Speech Subtitle Bubble for VR Users -->
         <a-entity id="vr-speech-bubble" position="0 1.85 0" rotation="0 0 0">
-          <a-plane width="1.1" height="0.3" color="#091220" opacity="0.92" material="shader: flat;">
+          <a-plane width="1.1" height="0.32" color="#091220" opacity="0.94" material="shader: flat;">
             <a-text
               id="vr-speech-text"
               value="Dr. Avery: Maintain 100-120 BPM\\nand full chest recoil."
               align="center"
               color="#00f0ff"
-              width="1.6"
+              width="1.1"
+              wrap-count="28"
               position="0 0 0.01"
             ></a-text>
           </a-plane>

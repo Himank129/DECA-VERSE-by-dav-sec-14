@@ -43,19 +43,19 @@ module.exports = `
         <div class="selector-group" title="Switch 3D Medical Environment">
           <span class="selector-label">Env:</span>
           <select id="select-env" class="custom-select">
-            <option value="er">Emergency Room</option>
-            <option value="icu">Intensive Care Unit</option>
+            <option value="er">ER Bay</option>
+            <option value="icu">ICU</option>
             <option value="ambulance">Ambulance</option>
-            <option value="lab">Training Lab</option>
+            <option value="lab">Lab</option>
           </select>
         </div>
 
         <div class="selector-group" title="Select Patient Age Category">
           <span class="selector-label">Patient:</span>
           <select id="select-patient" class="custom-select">
-            <option value="adult">Adult (5-6 cm)</option>
-            <option value="child">Child (5 cm)</option>
-            <option value="infant">Infant (4 cm)</option>
+            <option value="adult">Adult (5-6cm)</option>
+            <option value="child">Child (5cm)</option>
+            <option value="infant">Infant (4cm)</option>
           </select>
         </div>
 
@@ -177,16 +177,16 @@ module.exports = `
           <!-- Compression Depth Gauge -->
           <div class="gauge-block">
             <div class="gauge-header">
-              <span>DEPTH (CM)</span>
+              <span>DEPTH</span>
               <span class="gauge-val" id="val-depth">0.0 cm</span>
             </div>
             <div class="gauge-track">
               <div class="gauge-target-zone" id="zone-depth" style="left: 71%; width: 15%;"></div>
               <div class="gauge-fill" id="fill-depth"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.6rem; color:var(--text-muted);">
+            <div class="gauge-sub-row">
               <span>0 cm</span>
-              <span id="depth-target-text" style="color:var(--accent-green); font-weight:700;">Target: 5.0 - 6.0 cm</span>
+              <span id="depth-target-text" style="color:var(--accent-green); font-weight:700;">5.0-6.0cm</span>
               <span>7 cm</span>
             </div>
           </div>
@@ -194,22 +194,22 @@ module.exports = `
           <!-- Compression Rate Gauge -->
           <div class="gauge-block">
             <div class="gauge-header">
-              <span>RATE (BPM)</span>
+              <span>RATE</span>
               <span class="gauge-val" id="val-rate">0 BPM</span>
             </div>
             <div class="gauge-track">
               <div class="gauge-target-zone" id="zone-rate" style="left: 62.5%; width: 12.5%;"></div>
               <div class="gauge-fill" id="fill-rate"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.6rem; color:var(--text-muted);">
+            <div class="gauge-sub-row">
               <span>0</span>
-              <span style="color:var(--accent-green); font-weight:700;">Target: 100 - 120</span>
+              <span style="color:var(--accent-green); font-weight:700;">100-120</span>
               <span>160</span>
             </div>
           </div>
 
           <!-- Recoil Quality Gauge -->
-          <div class="gauge-block" style="min-width:110px;">
+          <div class="gauge-block">
             <div class="gauge-header">
               <span>RECOIL</span>
               <span class="gauge-val" id="val-recoil">100%</span>
@@ -217,14 +217,14 @@ module.exports = `
             <div class="gauge-track">
               <div class="gauge-fill" id="fill-recoil" style="width:100%; background:var(--accent-green);"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.6rem; color:var(--text-muted);">
-              <span>Leaning</span>
-              <span style="color:var(--accent-green);">Full Release</span>
+            <div class="gauge-sub-row">
+              <span>Lean</span>
+              <span style="color:var(--accent-green); font-weight:700;">Full</span>
             </div>
           </div>
 
           <!-- Placement Landmark Accuracy -->
-          <div class="gauge-block" style="min-width:110px;">
+          <div class="gauge-block">
             <div class="gauge-header">
               <span>LANDMARK</span>
               <span class="gauge-val" id="val-placement">Optimal</span>
@@ -232,16 +232,16 @@ module.exports = `
             <div class="gauge-track">
               <div class="gauge-fill" id="fill-placement" style="width:100%; background:var(--accent-green);"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.6rem; color:var(--text-muted);">
-              <span>Off-Center</span>
-              <span style="color:var(--accent-green);">Sternum Center</span>
+            <div class="gauge-sub-row">
+              <span>Off</span>
+              <span style="color:var(--accent-green); font-weight:700;">Center</span>
             </div>
           </div>
         </div>
 
         <!-- Live Real-Time Clinical Feedback Banner (Single clear horizontal banner) -->
         <div class="feedback-banner" id="banner-feedback">
-          READY FOR CHEST COMPRESSIONS
+          READY FOR COMPRESSIONS
         </div>
 
         <!-- Interactive Direct Action Buttons -->
@@ -261,7 +261,7 @@ module.exports = `
       <!-- Mini Telemetry Counters Strip -->
       <div class="mini-counters-row">
         <div class="counter-item">
-          <span>Compressions:</span>
+          <span>Comp:</span>
           <span class="counter-num" id="stat-total-compressions">0</span>
         </div>
         <div class="counter-item">
@@ -269,11 +269,11 @@ module.exports = `
           <span class="counter-num" id="stat-cycle-count">0 / 30</span>
         </div>
         <div class="counter-item">
-          <span>Chest Compression Fraction (CCF):</span>
+          <span>CCF:</span>
           <span class="counter-num" id="stat-ccf">100%</span>
         </div>
         <div class="counter-item">
-          <span>Elapsed Time:</span>
+          <span>Time:</span>
           <span class="counter-num" id="stat-session-timer">00:00</span>
         </div>
         <div class="counter-item">
