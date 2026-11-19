@@ -408,9 +408,9 @@ class CPREngine {
   deliverCompression(simulatedForce = 1.0, offsetMm = 0) {
     const now = Date.now();
 
-    // Enforce 1.5 second cooldown between every compression
-    if (this.lastCompressionTime > 0 && (now - this.lastCompressionTime < 1500)) {
-      return false; // Still in 1.5s cooldown
+    // Enforce 0.2 second cooldown between every compression
+    if (this.lastCompressionTime > 0 && (now - this.lastCompressionTime < 200)) {
+      return false; // Still in 0.2s cooldown
     }
 
     this.totalCompressions++;
@@ -423,24 +423,24 @@ class CPREngine {
       this.compressionIntervals.push(instantBPM);
       if (this.compressionIntervals.length > 5) this.compressionIntervals.shift();
       const avgBpm = Math.round(this.compressionIntervals.reduce((a, b) => a + b, 0) / this.compressionIntervals.length);
-      this.currentRate = avgBpm;
+      this.currentRate = Math.min(180, Math.max(30, avgBpm));
     } else {
-      this.currentRate = 40;
+      this.currentRate = 120;
     }
     this.lastCompressionTime = now;
-    this.activeCompressionTimeMs += 700;
+    this.activeCompressionTimeMs += 100;
 
-    // Visual button cooldown state
+    // Visual button cooldown state (0.2s)
     const btnCompress = document.getElementById('btn-compress');
     if (btnCompress) {
       btnCompress.classList.add('cooldown');
       setTimeout(() => {
         if (btnCompress) btnCompress.classList.remove('cooldown');
-      }, 1500);
+      }, 200);
     }
 
     // Audio thump on chest compression
-    this.audio.playTone(160, 0.12, 'sine', 0.45);
+    this.audio.playTone(160, 0.08, 'sine', 0.45);
 
     // Simulated Depth
     const pat = CPRConfig.patients[CPRConfig.patientType];
@@ -459,14 +459,14 @@ class CPREngine {
     this.placementOffsets.push(offsetMm);
     this.currentPlacement = offsetMm < 8 ? 'Optimal' : offsetMm < 18 ? 'Slightly Off' : 'Off-Center';
 
-    // 3D Physical Displacement of Sternal Plate (Smooth push & recoil over 300ms)
+    // 3D Physical Displacement of Sternal Plate (Fast 90ms push & recoil for 0.2s cadence)
     const chestPlate = document.getElementById('chest-plate');
     if (chestPlate) {
       const displacementY = -0.01 * (this.currentDepth * 0.7);
       chestPlate.setAttribute('position', \`0 \${displacementY} 0\`);
       setTimeout(() => {
         chestPlate.setAttribute('position', '0 0 0');
-      }, 300);
+      }, 90);
     }
 
     // VR Haptic pulse
@@ -844,10 +844,10 @@ class AIInstructor {
     }
 
     if (banner) {
-      banner.textContent = "COMPRESSION DELIVERED • 1.5s COOLDOWN ACTIVE";
+      banner.textContent = "COMPRESSION REGISTERED • 0.2s CADENCE";
       banner.className = "feedback-banner perfect";
     }
-    this.speech.speak("Controlled compression delivered. Good depth and full chest recoil.");
+    this.speech.speak("Good compression depth and recoil.");
     this.lastAdviceTime = now;
   }
 
